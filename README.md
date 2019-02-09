@@ -2,7 +2,7 @@
 
 #### Name: Arshdeep Singh Syal
 #### Unity Id: asyal
-#### Link to screencast video:
+#### Link to screencast video: https://drive.google.com/file/d/1yV4d3RxhLtRfRnb_hat9ykNXFATjHRHQ/view?usp=sharing
 
 I have written an ansible playbook which runs on a configuration server and allows us to automatically configure a web server to remotely run mattermost on it.
 

@@ -50,22 +50,22 @@ Now that we have received success on running all the taks in our Ansible playboo
 
 I have created sample credentials to show that we can log onto the server.
 
-<img width="1440" alt="screenshot 2019-02-09 at 12 03 03 am" src="https://media.github.ncsu.edu/user/12952/files/da8ef400-2bfe-11e9-9b50-98d50e667e81">
+<img width="1440" alt="screenshot 2019-02-09 at 12 01 21 am" src="https://media.github.ncsu.edu/user/12952/files/debb1180-2bfe-11e9-9a62-6ecbda4d5962">
 
 ```Username: admin@example.com```
 
 ```Password: Password```
 
-<img width="1440" alt="screenshot 2019-02-09 at 12 02 51 am" src="https://media.github.ncsu.edu/user/12952/files/dbc02100-2bfe-11e9-984e-0424c00002a8">
+<img width="1438" alt="screenshot 2019-02-09 at 12 01 43 am" src="https://media.github.ncsu.edu/user/12952/files/dd89e480-2bfe-11e9-9d03-bd6a1ab83db8">
 
 As you can see that we have now successfully logged into the mattermost server.
 
-<img width="1440" alt="screenshot 2019-02-09 at 12 02 34 am" src="https://media.github.ncsu.edu/user/12952/files/dc58b780-2bfe-11e9-9ff8-069ce64b51cc">
-
 <img width="1440" alt="screenshot 2019-02-09 at 12 01 54 am" src="https://media.github.ncsu.edu/user/12952/files/dcf14e00-2bfe-11e9-8fa5-7365fd697c34">
 
-<img width="1438" alt="screenshot 2019-02-09 at 12 01 43 am" src="https://media.github.ncsu.edu/user/12952/files/dd89e480-2bfe-11e9-9d03-bd6a1ab83db8">
+<img width="1440" alt="screenshot 2019-02-09 at 12 03 03 am" src="https://media.github.ncsu.edu/user/12952/files/da8ef400-2bfe-11e9-9b50-98d50e667e81">
 
-<img width="1440" alt="screenshot 2019-02-09 at 12 01 21 am" src="https://media.github.ncsu.edu/user/12952/files/debb1180-2bfe-11e9-9a62-6ecbda4d5962">
+<img width="1440" alt="screenshot 2019-02-09 at 12 02 34 am" src="https://media.github.ncsu.edu/user/12952/files/dc58b780-2bfe-11e9-9ff8-069ce64b51cc">
+
+<img width="1440" alt="screenshot 2019-02-09 at 12 02 51 am" src="https://media.github.ncsu.edu/user/12952/files/dbc02100-2bfe-11e9-984e-0424c00002a8">
 
 Each one of the above mentioned parts are a collection of ansible tasks which maintain idempotency.

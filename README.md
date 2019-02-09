@@ -20,7 +20,7 @@ The first part which is in the file ab.yml, which takes care of the installation
 
 ```ansible-playbook ab.yml -i inventory```
 
-
+<img width="971" alt="screenshot 2019-02-08 at 11 06 18 pm" src="https://media.github.ncsu.edu/user/12952/files/8dab1d80-2bfe-11e9-849d-df304f5fc09d">
 
 2) Installation of the Mattermost server
 
@@ -28,7 +28,7 @@ The second part which is in the file cd.yml, takes care of installation of the m
 
 ```ansible-playbook cd.yml -i inventory```
 
-
+<img width="971" alt="screenshot 2019-02-08 at 11 06 40 pm" src="https://media.github.ncsu.edu/user/12952/files/8e43b400-2bfe-11e9-9bc3-e33b1f38c962">
 
 3) User creation in the mattermost server
 
@@ -36,7 +36,7 @@ The third part which is in the file ef.yml, takes care of user creation in the m
 
 ```ansible-playbook ef.yml -i inventory```
 
-
+<img width="982" alt="screenshot 2019-02-08 at 11 06 55 pm" src="https://media.github.ncsu.edu/user/12952/files/8edc4a80-2bfe-11e9-8a38-311fb4ebf9a8">
 
 4) Setting up the SMTP connection
 
@@ -44,8 +44,28 @@ The fourth and the last part which is in the file gh.yml, takes care of setting 
 
 ```ansible-playbook gh.yml -i inventory```
 
+<img width="976" alt="screenshot 2019-02-08 at 11 07 23 pm" src="https://media.github.ncsu.edu/user/12952/files/900d7780-2bfe-11e9-90e2-33cc4961f7f6">
 
 Now that we have received success on running all the taks in our Ansible playbook, we verify if the server is up and running by going to the IP address of the mattermost server, ie. 198.168.33.100:8065.
+
 I have created sample credentials to show that we can log onto the server.
+
+<img width="1440" alt="screenshot 2019-02-09 at 12 03 03 am" src="https://media.github.ncsu.edu/user/12952/files/da8ef400-2bfe-11e9-9b50-98d50e667e81">
+
+```Username: admin@example.com```
+
+```Password: Password```
+
+<img width="1440" alt="screenshot 2019-02-09 at 12 02 51 am" src="https://media.github.ncsu.edu/user/12952/files/dbc02100-2bfe-11e9-984e-0424c00002a8">
+
+As you can see that we have now successfully logged into the mattermost server.
+
+<img width="1440" alt="screenshot 2019-02-09 at 12 02 34 am" src="https://media.github.ncsu.edu/user/12952/files/dc58b780-2bfe-11e9-9ff8-069ce64b51cc">
+
+<img width="1440" alt="screenshot 2019-02-09 at 12 01 54 am" src="https://media.github.ncsu.edu/user/12952/files/dcf14e00-2bfe-11e9-8fa5-7365fd697c34">
+
+<img width="1438" alt="screenshot 2019-02-09 at 12 01 43 am" src="https://media.github.ncsu.edu/user/12952/files/dd89e480-2bfe-11e9-9d03-bd6a1ab83db8">
+
+<img width="1440" alt="screenshot 2019-02-09 at 12 01 21 am" src="https://media.github.ncsu.edu/user/12952/files/debb1180-2bfe-11e9-9a62-6ecbda4d5962">
 
 Each one of the above mentioned parts are a collection of ansible tasks which maintain idempotency.

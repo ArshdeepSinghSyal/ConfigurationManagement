@@ -1,0 +1,68 @@
+- hosts: all
+  user: vagrant
+  become: yes
+  become_method: sudo
+
+  tasks:
+
+    - name: Including variable from vars.yml
+      include_vars:
+        file: ./vars.yml
+    
+    - name: Copying .my.cnf file which has the root credentials
+      template:
+        src: ./.my.cnf
+        dest: ~/.my.cnf
+        owner: root
+        mode: 0600
+
+    - name: Setting up MySql root credentials prior to installation
+      debconf: name='mysql-server' question='mysql-server/root_password' value="{{mysql_root_password}}"  vtype='password'
+     
+    - name: Confirm MySql root credentials before final installation
+      debconf: name='mysql-server' question='mysql-server/root_password_again' value="{{mysql_root_password}}" vtype='password'
+
+    - name: Installing the MySql server 
+      apt: name=mysql-server state=present
+      become: yes
+      become_method: sudo
+
+    - name: Installing pip and pip3 
+      apt: name={{ item }} state=present
+      with_items:
+        - python-pip
+        - python3-pip
+      tags:
+        - packages
+
+    - name: Installing PyMySql
+      apt: name=python3-pymysql state=present
+      become: yes
+      become_method: sudo
+
+    - name: Installing Python MySql server
+      apt: name=python-mysqldb state=present
+      become: yes
+      become_method: sudo
+
+    - name: Starting MySql
+      sudo: yes
+      service:
+        name: mysql
+        state: started
+        enabled: true
+        
+    - name: Creating a new user
+      sudo: yes
+      mysql_user:
+        name: "{{mysql_user}}"
+        password: 12345
+        priv: '*.*:ALL'
+        state: present
+
+
+    - name: Create a new database 'mattermost'
+      mysql_db:
+        name: mattermost
+        state: present
+

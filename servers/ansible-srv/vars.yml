@@ -1,0 +1,16 @@
+mysql_root_password: adbms
+mysql_user: mmuser
+mysql_pass: 12345
+mysql_database: mattermost
+team_name: firstteam
+admin_name: admin
+user_name: user
+database_config: '        "DataSource": "mmuser:12345@tcp(127.0.0.1:3306)/mattermost?charset=utf8mb4,utf8&readTimeout=30s&writeTimeout=30s",'
+URL: 'http://192.168.33.100'
+Name: 'No-Reply'
+Email: 'arshdeepsinghsyal@zoho.com'
+SMTPUsername: 'XXXXXXX@zoho.com' #put in zoho email address in place of XXXXXXX
+SMTPPassword: 'XXXXXXX' #put in password in place of XXXXXXX
+SMTPServer: 'smtp.zoho.com'
+SMTPPort: '465'
+

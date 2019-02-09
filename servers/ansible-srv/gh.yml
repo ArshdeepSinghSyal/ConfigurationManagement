@@ -1,0 +1,98 @@
+ - hosts: all
+   user: vagrant
+   become: yes
+   become_method: sudo
+   
+   tasks:
+   
+   - name: Included variables from vars.yml
+     include_vars:
+       file: ./vars.yml  
+
+   - name: Setting the url of the site
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"SiteURL": "",'
+        line: '        "SiteURL": "{{URL}}",'
+        backrefs: yes
+
+
+   - name: Enabling Email Notifications (true)
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"SendEmailNotifications":'
+        line: '        "SendEmailNotifications": true,'
+        backrefs: yes
+
+   - name: Setting notification display name (No-Reply)
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"FeedbackName": "",'
+        line: '        "FeedbackName": "{{Name}}",'
+        backrefs: yes
+
+
+   - name: Setting notifications from address to {your-domain-name} For example, example.com
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"FeedbackEmail": "",'
+        line: '        "FeedbackEmail": "{{Email}}",'
+        backrefs: yes
+
+   - name: Setting EnableSMTPAuth (true)
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"EnableSMTPAuth": false, '
+        line: '        "EnableSMTPAuth": true,'
+        backrefs: yes
+
+   - name: Setting SMTP Server Username to {SMTP-username} For example, admin@example.com
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"SMTPUsername": "",'
+        line: '        "SMTPUsername": "{{SMTPUsername}}",'
+        backrefs: yes
+
+   - name: Setting SMTP Server Password to {SMTP-password}
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"SMTPPassword": "",'
+        line: '        "SMTPPassword": "{{SMTPPassword}}",'
+        backrefs: yes
+
+   - name: Setting SMTP Server to {SMTP-server} For example, mail.example.com
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"SMTPServer": "",'
+        line: '        "SMTPServer": "{{SMTPServer}}",'
+        backrefs: yes
+
+   - name: Setting SMTP server port (465)
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"SMTPPort": "",'
+        line: '        "SMTPPort": "{{SMTPPort}}",'
+        backrefs: yes
+
+   - name: Setting SMTP connection security
+     lineinfile:
+        dest: /opt/mattermost/config/config.json
+        regexp: '"ConnectionSecurity": "",'
+        line: '        "ConnectionSecurity": "TLS",'
+        backrefs: yes
+
+   - name: Veryfying connection security
+     sudo: yes
+     template:
+       src: ./config.json
+       dest: /opt/mattermost/config/config.json
+       owner: mattermost
+       mode: 0777
+
+   - name: Restarting Mattermost
+     sudo: yes
+     systemd:
+       state: started
+       daemon_reload: yes
+       enabled: true
+       name: mattermost.service

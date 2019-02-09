@@ -1,0 +1,68 @@
+ - hosts: all
+   user: vagrant
+   become: yes
+   become_method: sudo
+     
+   tasks:
+    - name: Including variables from vars.yml
+      include_vars:
+        file: ./vars.yml
+
+    - name: Installing the Mattermost server
+      get_url:
+        url: https://releases.mattermost.com/5.7.1/mattermost-5.7.1-linux-amd64.tar.gz
+        dest: /usr/lib/
+        mode: 0777
+
+    - name: Extracting the mattermost.tar.gz file
+      sudo: yes
+      unarchive:
+        src: /usr/lib/mattermost-5.7.1-linux-amd64.tar.gz
+        dest: /opt/
+        remote_src: yes
+
+    - name: Creating a directory 'data'
+      sudo: yes
+      file:
+        path: /opt/mattermost/data
+        state: directory
+        mode: "g+w"
+
+    - name: Creating a group 'mattermost'
+      group:
+        name: mattermost
+        state: present
+
+    - name: Creating a user 'mattermost'
+      user:
+        name: mattermost
+        group: mattermost
+
+    - name: Setting permissions
+      file:
+        dest: /opt/mattermost/
+        owner: mattermost
+        group: mattermost
+        mode: "g+w"
+        recurse: yes
+
+    - name: Editing the config.json file using a template
+      template:
+        src: ./configjson.j2
+        dest: /opt/mattermost/config/config.json
+
+    - name: Copying the mattermost.service file
+      sudo: yes
+      template:
+        src: ./mattermost.service
+        dest: /lib/systemd/system/mattermost.service
+        owner: root
+
+    - name: Starting the mattermost service
+      sudo: yes
+      systemd:
+        state: started
+        daemon_reload: yes
+        enabled: true
+        name: mattermost.service
+

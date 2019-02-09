@@ -62,6 +62,8 @@ As you can see that we have now successfully logged into the mattermost server.
 
 <img width="1440" alt="screenshot 2019-02-09 at 12 01 54 am" src="https://media.github.ncsu.edu/user/12952/files/dcf14e00-2bfe-11e9-8fa5-7365fd697c34">
 
+We can browse around in the system console to verify what we have created. 
+
 <img width="1440" alt="screenshot 2019-02-09 at 12 03 03 am" src="https://media.github.ncsu.edu/user/12952/files/da8ef400-2bfe-11e9-9b50-98d50e667e81">
 
 <img width="1440" alt="screenshot 2019-02-09 at 12 02 34 am" src="https://media.github.ncsu.edu/user/12952/files/dc58b780-2bfe-11e9-9ff8-069ce64b51cc">
@@ -69,3 +71,6 @@ As you can see that we have now successfully logged into the mattermost server.
 <img width="1440" alt="screenshot 2019-02-09 at 12 02 51 am" src="https://media.github.ncsu.edu/user/12952/files/dbc02100-2bfe-11e9-984e-0424c00002a8">
 
 Each one of the above mentioned parts are a collection of ansible tasks which maintain idempotency.
+
+Note: I have set up smtp connection with Zoho. And I have removed my personal account credentials from the vars.yml file.
+To run this playbook, just put in your zoho email account and password and run the playbook.  
